@@ -8,11 +8,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/cookies": "^0.7.7",
+    "@types/styled-components": "^5.1.22",
+    "framer-motion": "^6.2.6",
+    "gray-matter": "^4.0.3",
+    "js-cookie": "^3.0.1",
     "next": "12.0.10",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.1",
     "@types/node": "17.0.17",
     "@types/react": "17.0.39",
     "eslint": "8.9.0",
