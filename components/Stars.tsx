@@ -61,8 +61,8 @@ export default function Stars() {
 
     let createStars = [];
     for (let star = 0; star < 200; star++) {
-      const x = Math.random() * windowWidth;
-      const y = Math.random() * windowHeight;
+      const x = Math.random() * windowWidth - 200;
+      const y = Math.random() * windowHeight - 200;
 
       const position = {
         left: x + "px",
