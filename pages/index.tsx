@@ -18,6 +18,7 @@ const NavBar = styled.div`
 const PageContent = styled.div`
   max-width: 900px;
   margin: 0 auto;
+  position: relative;
 `;
 
 const BlogCard = styled(motion.div)`
@@ -115,7 +116,7 @@ const Home: NextPage = (query: any) => {
   }, [welcomeMsg]);
 
   return (
-    <div>
+    <div id="container" style={{ position: "relative" }}>
       <SpaceShipWrapper>
         <NavBar>
           <h2>{welComeMessage}Welcome to Min Space</h2>
@@ -141,9 +142,9 @@ const Home: NextPage = (query: any) => {
           }}
         />
       </SpaceShipWrapper>
+      <Stars />
 
       <PageContent>
-        <Stars />
         <div style={{ margin: "0 auto" }}>
           <h2>Blogs</h2>
         </div>

@@ -53,8 +53,12 @@ export default function Stars() {
   const [stars, setStars] = useState<any>([]);
 
   useEffect(() => {
-    const windowWidth = window.innerWidth;
-    const windowHeight = document.documentElement.scrollHeight;
+    const container = document.getElementById("container");
+    if (!container) return;
+    const windowWidth = container.scrollWidth;
+
+    const windowHeight = container.scrollHeight;
+
     let createStars = [];
     for (let star = 0; star < 200; star++) {
       const x = Math.random() * windowWidth;
