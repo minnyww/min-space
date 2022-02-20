@@ -25,7 +25,6 @@ const ContentContainer = styled(motion.div)`
   @media only screen and (max-width: 412px) {
     padding: 0rem 3rem;
   }
-  padding: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 2rem;
@@ -66,7 +65,10 @@ const Home: NextPage = (query: any) => {
   }, [welcomeMsg]);
 
   return (
-    <div id="container" style={{ height: "100%" }}>
+    <div
+      id="container"
+      style={{ height: "100%", maxWidth: "900px", margin: "0 auto" }}
+    >
       <NavBar>
         <Text className="header-text" h1 weight="bold" color="warning">
           Min Space
