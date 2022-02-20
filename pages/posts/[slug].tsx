@@ -1,6 +1,6 @@
+import { Text } from "@nextui-org/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Stars from "../../components/Stars";
@@ -10,6 +10,9 @@ import markdownToHtml from "../../lib/markdownToHtml";
 const ContentContainer = styled.div`
   max-width: 900px;
   margin: 0 auto;
+  padding: 1rem 2rem;
+  max-height: 100vh;
+  overflow: scroll;
 `;
 
 export default function Post({ post, morePosts, preview }: any) {
@@ -17,41 +20,37 @@ export default function Post({ post, morePosts, preview }: any) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-  console.log("post : ", post);
   return (
-    <div>
-      {" "}
+    <div id="container" style={{ overflow: "hidden" }}>
       {router.isFallback ? (
         <h2>Loading…</h2>
       ) : (
-        <>
+        <div>
           <Head>
             <title>{post.title}</title>
             <meta property="og:image" content={post.ogImage.url} />
           </Head>
           <Stars />
           <ContentContainer>
-            <h1 style={{ marginBottom: "0px" }}>{post.title}</h1>
-            <h5 style={{ marginTop: "5px" }}>
+            <Text
+              className="header-text"
+              h1
+              size={60}
+              weight="bold"
+              css={{ textAlign: "center", marginBottom: "1rem" }}
+            >
+              {post.title}
+            </Text>
+            <Text color="$purple200" weight={"bold"}>
               {new Date(post.date).toDateString()}
-            </h5>
-            <div style={{ textAlign: "center" }}>
-              <Image
-                layout="fixed"
-                width={500}
-                height={500}
-                objectFit="cover"
-                src={post.coverImage}
-              />
-            </div>
+            </Text>
 
             <div
               className="markdown"
-              //   className={markdownStyles["markdown"]}
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </ContentContainer>
-        </>
+        </div>
       )}
     </div>
   );

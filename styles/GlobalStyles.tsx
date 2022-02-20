@@ -40,9 +40,9 @@ const GlobalStyle = createGlobalStyle`
   animation: rainbow-text-animation 0.5s ease forwards;
 }
   .header-text { 
-  max-width:8em;
+  max-width:10em;
   font-size: 40px;
-  line-height: 0.9em;
+  line-height: 1.4em;
   background: conic-gradient(
     #CA4246 16.666%, 
     #E16541 16.666%, 
@@ -70,6 +70,17 @@ const GlobalStyle = createGlobalStyle`
   .markdown img { 
     display: block;
     margin : 0 auto;
+    
+    
+  }
+  .markdown { 
+    overflow: scroll;
+  }
+  .markdown p { 
+    color : var(--nextui-colors-cyan100);
+  }
+  .markdown h2 { 
+    color :  var(--nextui-colors-pink400);
   }
 
 `;
