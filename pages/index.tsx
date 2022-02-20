@@ -56,7 +56,7 @@ const Home: NextPage = (query: any) => {
   }, [welcomeMsg]);
 
   return (
-    <div id="container" style={{ position: "relative", minHeight: "100vh" }}>
+    <div id="container">
       <NavBar>
         <Text
           className="header-text"

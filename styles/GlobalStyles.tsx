@@ -5,11 +5,7 @@ const GlobalStyle = createGlobalStyle`
         --bg-color : #140e34;
         --border-radius : 12px;
     }
-  body {
-    min-height: 100vh;
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-    
-  }
+
   @keyframes rainbow-text-animation {
   0% {
     background-size: 57%;
@@ -44,11 +40,9 @@ const GlobalStyle = createGlobalStyle`
   animation: rainbow-text-animation 0.5s ease forwards;
 }
   .header-text { 
-  width:8em;
+  max-width:8em;
   font-size: 40px;
   line-height: 0.9em;
-    background: #CA4246;
-  background-color: #CA4246;
   background: conic-gradient(
     #CA4246 16.666%, 
     #E16541 16.666%, 

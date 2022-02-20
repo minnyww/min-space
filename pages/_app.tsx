@@ -1,8 +1,9 @@
 // import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import GlobalStyle from "../styles/GlobalStyles";
+import "../styles/globals.css";
 import { NextUIProvider, createTheme } from "@nextui-org/react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+// import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 const darkTheme = createTheme({
   type: "dark",

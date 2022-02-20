@@ -1,5 +1,26 @@
-import { useMemo, useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import styled, { keyframes } from "styled-components";
+
+// const moveCloud = `
+//     from {background-position:0 0;}
+//   to {background-position:10000px 0;}
+// `;
+
+// const Cloud = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: transparent
+//     url(http://www.script-tutorials.com/demos/360/images/clouds3.png) repeat top
+//     center;
+//   z-index: 3;
+
+//   animation: ${moveCloud} 200s linear infinite;
+// `;
 
 const StarAnimation = keyframes`
   0% {
@@ -49,34 +70,82 @@ const Star = styled.div<{ top: number; left: number; delay: number }>`
   z-index: 2;
 `;
 
+const useWidth = () => {
+  const [width, setWidth] = useState(0);
+  const [height, setHieght] = useState(0);
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+    setHieght(window.innerHeight);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
+  return { width, height };
+};
+
 export default function Stars() {
   const [stars, setStars] = useState<any>([]);
+  const { width, height } = useWidth();
+  const createStarList = useCallback(() => {
+    let createStars: any = [];
 
-  useEffect(() => {
     const container = document.getElementById("container");
     if (!container) return;
-    const windowWidth = container.scrollWidth;
-
-    const windowHeight = container.scrollHeight;
-
-    let createStars = [];
-    for (let star = 0; star < 200; star++) {
-      const x = Math.random() * windowWidth - 50;
-      const y = Math.random() * windowHeight - 60;
-
+    const windowWidth = width === 0 ? window.screen.width : width;
+    const windowHeight = height === 0 ? window.screen.height : height;
+    for (let star = 0; star < 60; star++) {
+      const x = Math.random() * windowWidth - 20;
+      const y = Math.random() * windowHeight - 20;
       const position = {
         left: x + "px",
         top: y + "px",
       };
       createStars.push(position);
-      setStars(createStars);
     }
-  }, []);
+    setStars([...createStars]);
+  }, [width, height]);
 
-  const starsList = useMemo(() => {
-    return stars?.map((star: { left: number; top: number }) => {
-      return <Star key={star.left} {...star} delay={Math.random() * 3} />;
-    });
-  }, [stars]);
-  return starsList;
+  // useEffect(() => {
+  //   const container = document.getElementById("container");
+  //   if (!container) return;
+  //   const windowWidth = window.screen.width;
+
+  //   const windowHeight = window.screen.height;
+
+  //   let createStars = [];
+  //   for (let star = 0; star < 200; star++) {
+  //     const x = Math.random() * windowWidth - 50;
+  //     const y = Math.random() * windowHeight - 60;
+
+  //     const position = {
+  //       left: x + "px",
+  //       top: y + "px",
+  //     };
+  //     createStars.push(position);
+  //     setStars(createStars);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    createStarList();
+    window.addEventListener("resize", createStarList);
+    return () => {
+      window.removeEventListener("resize", createStarList);
+    };
+  }, [createStarList]);
+
+  // const starsList = useMemo(() => {
+  //   return stars?.map((star: { left: number; top: number }) => {
+  //     return <Star key={star.left} {...star} delay={Math.random() * 3} />;
+  //   });
+  // }, [stars]);
+  return (
+    <div>
+      {/* <Cloud /> */}
+      {stars?.map((star: { left: number; top: number }) => {
+        return <Star key={star.left} {...star} delay={Math.random() * 3} />;
+      })}
+    </div>
+  );
 }
