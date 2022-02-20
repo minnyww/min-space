@@ -15,6 +15,7 @@ const NavBar = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  z-index: 2;
 `;
 
 const ContentContainer = styled(motion.div)`
@@ -65,7 +66,7 @@ const Home: NextPage = (query: any) => {
   }, [welcomeMsg]);
 
   return (
-    <div id="container">
+    <div id="container" style={{ height: "100%" }}>
       <NavBar>
         <Text className="header-text" h1 weight="bold" color="warning">
           Min Space
@@ -75,7 +76,6 @@ const Home: NextPage = (query: any) => {
             rotate: [120, 300, 600],
             translateX: [0, 0, 3000],
             transition: {
-              duration: 1,
               yoyo: Infinity,
             },
           }}

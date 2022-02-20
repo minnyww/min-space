@@ -92,11 +92,11 @@ export default function Stars() {
 
     const container = document.getElementById("container");
     if (!container) return;
-    const windowWidth = width === 0 ? window.screen.width : width;
-    const windowHeight = height === 0 ? window.screen.height : height;
+    const windowWidth = width === 0 ? window.innerWidth : width;
+    const windowHeight = height === 0 ? window.innerHeight : height;
     for (let star = 0; star < 40; star++) {
-      const x = Math.random() * windowWidth - 20;
-      const y = Math.random() * windowHeight - 20;
+      const x = Math.random() * windowWidth;
+      const y = Math.random() * windowHeight - 50;
       const position = {
         left: x + "px",
         top: y + "px",
