@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import Cookies from "js-cookie";
 import { getAllPosts } from "../lib/api";
 import { motion } from "framer-motion";
@@ -16,6 +16,7 @@ const NavBar = styled.div`
   align-items: center;
   gap: 12px;
   z-index: 2;
+  justify-content: space-between;
 `;
 
 const ContentContainer = styled(motion.div)`
@@ -28,6 +29,7 @@ const ContentContainer = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 2rem;
+  padding: 1rem 0rem;
 `;
 
 const Astronaut = styled(motion.img)`
@@ -39,6 +41,40 @@ const Astronaut = styled(motion.img)`
 
 const ContentWrapper = styled.div`
   padding: 1rem;
+`;
+
+const typing = keyframes`
+  from { width: 0;opacity:1 }
+  to { width: 100% ;opacity:1}
+`;
+
+const blink = keyframes`
+ from, 
+ to { border-color: transparent }
+ 50% { border-color: orange }
+`;
+
+const TypingWrapper = styled(motion.div)<{
+  textLength: number;
+  delay?: number;
+}>`
+  width: fit-content;
+
+  h4 {
+    opacity: 0;
+    font-family: monospace;
+    overflow: hidden;
+    border-right: 0.15em solid orange;
+    white-space: nowrap;
+    ${({ textLength, delay }) => {
+      return css`
+        animation: ${typing} 3.5s steps(${textLength}, end),
+          ${blink} 0.5s step-end infinite alternate;
+        animation-delay: ${delay}s;
+        animation-fill-mode: forwards;
+      `;
+    }}
+  }
 `;
 
 const Home: NextPage = (query: any) => {
@@ -64,6 +100,9 @@ const Home: NextPage = (query: any) => {
     setWelcomeMessage(welcomeMsg);
   }, [welcomeMsg]);
 
+  const GREETING_MESSAGE = "Hi i'm Apisit Amnuworrabut";
+  const GREETING_MESSAGE_2 = "I'm Software engineer at Vonder";
+
   return (
     <div
       id="container"
@@ -71,12 +110,11 @@ const Home: NextPage = (query: any) => {
     >
       <NavBar>
         <Text className="header-text" h1 weight="bold" color="warning">
-          Min Space
+          Welcom To Min Space
         </Text>
         <motion.div
           animate={{
             rotate: [120, 300, 600],
-            translateX: [0, 0, 3000],
             transition: {
               yoyo: Infinity,
             },
@@ -103,11 +141,24 @@ const Home: NextPage = (query: any) => {
         }}
       />
       <ContentWrapper>
+        {/* <TextTyping h2>Hi Alien</TextTyping> */}
+        <TypingWrapper textLength={GREETING_MESSAGE.length}>
+          <Text h4 color="warning">
+            {GREETING_MESSAGE}
+          </Text>
+        </TypingWrapper>
+        <TypingWrapper textLength={GREETING_MESSAGE_2.length} delay={3.5}>
+          <Text h4 color="warning">
+            {GREETING_MESSAGE_2}
+          </Text>
+        </TypingWrapper>
+
         <ContentContainer
           layout
           animate={{ scale: 1, opacity: 1 }}
           initial={{ scale: 0.5, opacity: 0 }}
           exit={{ scale: 0, opacity: 0 }}
+          style={{ paddingTop: "2rem" }}
         >
           {allPosts?.map((post: any) => {
             return (
