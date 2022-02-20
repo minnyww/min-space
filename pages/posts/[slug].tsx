@@ -10,7 +10,7 @@ import markdownToHtml from "../../lib/markdownToHtml";
 const ContentContainer = styled.div`
   max-width: 900px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 5rem 2rem;
   max-height: 100vh;
   overflow: scroll;
 `;

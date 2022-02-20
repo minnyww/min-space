@@ -95,7 +95,7 @@ export default function Stars() {
     const windowWidth = width === 0 ? window.innerWidth : width;
     const windowHeight = height === 0 ? window.innerHeight : height;
     for (let star = 0; star < 40; star++) {
-      const x = Math.random() * windowWidth;
+      const x = Math.random() * windowWidth - 30;
       const y = Math.random() * windowHeight - 50;
       const position = {
         left: x + "px",
