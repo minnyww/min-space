@@ -1,6 +1,6 @@
 ---
 title: "Thai Chana Checkin Project"
-url: "https://thaichana-checkin.web.app/"
+url: "Check-In Thai Chana without Scan Qr code"
 excerpt: https://thaichana-checkin.web.app/"
 coverImage: "/assets/blog/thai-chana-checkin/cover.png"
 date: "2020-03-1T05:35:07.322Z"
