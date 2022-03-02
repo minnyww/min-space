@@ -82,6 +82,9 @@ const GlobalStyle = createGlobalStyle`
   .markdown h2 { 
     color :  var(--nextui-colors-pink400);
   }
+  .markdown h3 { 
+    color :  var(--nextui-colors-pink400);
+  }
 
 `;
 
