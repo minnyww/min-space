@@ -6,7 +6,8 @@ import { getAllPosts } from "../lib/api";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Stars from "../components/Stars";
-import { Button, Card, Text } from "@nextui-org/react";
+import { Button, Card, Col, Text } from "@nextui-org/react";
+import { useRouter } from "next/router";
 
 const NavBar = styled.div`
   padding: 1rem 1rem;
@@ -54,7 +55,7 @@ const blink = keyframes`
  50% { border-color: orange }
 `;
 
-const TypingWrapper = styled(motion.div)<{
+const TypingWrapper = styled(motion.div) <{
   textLength: number;
   delay?: number;
 }>`
@@ -67,19 +68,20 @@ const TypingWrapper = styled(motion.div)<{
     border-right: 0.15em solid orange;
     white-space: nowrap;
     ${({ textLength, delay }) => {
-      return css`
+    return css`
         animation: ${typing} 3.5s steps(${textLength}, end),
           ${blink} 0.5s step-end infinite alternate;
         animation-delay: ${delay}s;
         animation-fill-mode: forwards;
       `;
-    }}
+  }}
   }
 `;
 
 const Home: NextPage = (query: any) => {
   const { welcomeMsg, allPosts } = query;
   const [, setWelcomeMessage] = useState("");
+  const router = useRouter()
   // const { scrollYProgress, scrollY } = useViewportScroll();
 
   // const scaleAnim = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.2, 1.4]);
@@ -116,7 +118,7 @@ const Home: NextPage = (query: any) => {
           animate={{
             rotate: [120, 300, 600],
             transition: {
-              yoyo: Infinity,
+              repeat: Infinity
             },
           }}
         >
@@ -162,21 +164,42 @@ const Home: NextPage = (query: any) => {
         >
           {allPosts?.map((post: any) => {
             return (
-              <Card key={post.slug}>
-                <Card.Body>
-                  <Text h3 color="$purple400">
-                    {post.title}
-                  </Text>
-                  <Text color="$purple100">{post.excerpt}</Text>
-                </Card.Body>
-                <Card.Footer>
-                  <Link href={`/posts/${post.slug}`} passHref>
-                    <Button color="gradient" bordered>
-                      Read
-                    </Button>
-                  </Link>
-                </Card.Footer>
+              <Card key={post.slug} isPressable onClick={() => {
+                router.push(`/posts/${post.slug}`)
+              }}>
+                <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
+                  <Col>
+                    <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
+                      {new Date(post.date).toDateString()}
+                    </Text>
+                    <Text h4 color="white">
+                      {post.title}
+                    </Text>
+                  </Col>
+                </Card.Header>
+                <Card.Image
+                  src={post.coverImage}
+                  objectFit="cover"
+                  width="100%"
+                  height={340}
+                  alt="Card image background"
+                />
               </Card>
+              // <Card key={post.slug}>
+              //   <Card.Body>
+              //     <Text h3 color="$purple400">
+              //       {post.title}
+              //     </Text>
+              //     <Text color="$purple100">{post.excerpt}</Text>
+              //   </Card.Body>
+              //   <Card.Footer>
+              //     <Link href={`/posts/${post.slug}`} passHref>
+              //       <Button color="gradient" bordered>
+              //         Read
+              //       </Button>
+              //     </Link>
+              //   </Card.Footer>
+              // </Card>
             );
           })}
         </ContentContainer>
@@ -196,7 +219,6 @@ export async function getStaticProps() {
     "coverImage",
     "excerpt",
   ]);
-  console.log("allPosts : ", allPosts);
 
   return {
     props: { allPosts },

@@ -70,20 +70,21 @@ const GlobalStyle = createGlobalStyle`
   .markdown img { 
     display: block;
     margin : 0 auto;
-    
-    
+    max-height: 400px;
+    object-fit: cover;
+    min-width: 400px;
   }
   .markdown { 
     overflow: scroll;
   }
   .markdown p { 
-    color : var(--nextui-colors-cyan100);
+    color : var(--nextui-colors-blue-900);
   }
   .markdown h2 { 
-    color :  var(--nextui-colors-pink400);
+    color :  var(--nextui-colors-pink800);
   }
   .markdown h3 { 
-    color :  var(--nextui-colors-pink400);
+    color :  var(--nextui-colors-pink700);
   }
 
 `;

@@ -1,6 +1,7 @@
 import { Text } from "@nextui-org/react";
 import ErrorPage from "next/error";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Stars from "../../components/Stars";
@@ -41,7 +42,16 @@ export default function Post({ post, morePosts, preview }: any) {
             >
               {post.title}
             </Text>
-            <Text color="$purple200" weight={"bold"}>
+            <Link href={`${post.url}`} passHref>
+              <Text
+                h3
+                weight="bold"
+                css={{ textAlign: "center", marginBottom: "1rem", cursor: 'pointer' }}
+              >
+                Demo Website
+              </Text>
+            </Link>
+            <Text color="$red800" weight={"bold"} >
               {new Date(post.date).toDateString()}
             </Text>
 
@@ -65,6 +75,7 @@ export async function getStaticProps({ params }: any) {
     "content",
     "ogImage",
     "coverImage",
+    "url"
   ]);
   const content = await markdownToHtml(post.content || "");
 
