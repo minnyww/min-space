@@ -4,13 +4,13 @@ import GlobalStyle from "../styles/GlobalStyles";
 import "../styles/globals.css";
 import { NextUIProvider, createTheme } from "@nextui-org/react";
 import Script from "next/script";
-// import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-const darkTheme = createTheme({
-  type: "dark",
-});
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const darkTheme = createTheme({
+    type: "dark",
+  });
+
   return (
     // <NextThemesProvider
     //   defaultTheme="system"

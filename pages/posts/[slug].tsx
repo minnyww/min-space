@@ -42,15 +42,30 @@ export default function Post({ post, morePosts, preview }: any) {
             >
               {post.title}
             </Text>
-            <Link href={`${post.url}`} passHref>
+            <Text
+              h3
+              css={{
+                textAlign: "center", marginBottom: "1rem", cursor: 'pointer',
+                textGradient: "45deg, $purple600 -20%, $pink600 100%",
+              }}
+              weight="bold"
+              onClick={() => router.push(`${post.url}`)}
+            >
+              Demo Website
+            </Text>
+            {/* <Link href={`${post.url}`} passHref>
               <Text
                 h3
                 weight="bold"
-                css={{ textAlign: "center", marginBottom: "1rem", cursor: 'pointer' }}
+                css={{
+
+                  textGradient: "45deg, $blue600 -20%, $pink600 50%",
+                }}
+
               >
                 Demo Website
               </Text>
-            </Link>
+            </Link> */}
             <Text color="$red800" weight={"bold"} >
               {new Date(post.date).toDateString()}
             </Text>

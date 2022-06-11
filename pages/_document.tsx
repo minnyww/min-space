@@ -7,11 +7,12 @@ import Document, {
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import { CssBaseline } from "@nextui-org/react";
+import React from "react";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
+    const sheet = new ServerStyleSheet()
 
     try {
       ctx.renderPage = () =>
@@ -23,12 +24,11 @@ export default class MyDocument extends Document {
       const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
+        styles: [
+          initialProps.styles,
+          sheet.getStyleElement(),
+          React.Children.toArray([initialProps.styles]),
+        ],
       };
     } finally {
       sheet.seal();
@@ -53,3 +53,5 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+

@@ -4,7 +4,6 @@ import styled, { css, keyframes } from "styled-components";
 import Cookies from "js-cookie";
 import { getAllPosts } from "../lib/api";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Stars from "../components/Stars";
 import { Button, Card, Col, Text } from "@nextui-org/react";
 import { useRouter } from "next/router";
