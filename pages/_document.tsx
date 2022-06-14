@@ -8,7 +8,10 @@ import Document, {
 import { ServerStyleSheet } from "styled-components";
 import { CssBaseline } from "@nextui-org/react";
 import React from "react";
+import Script from "next/script";
 
+
+//@ts-ignore
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const originalRenderPage = ctx.renderPage;
@@ -44,6 +47,14 @@ export default class MyDocument extends Document {
           />
           {CssBaseline.flush()}
         </Head>
+        <Script
+          id="Adsense-id"
+          data-ad-client="ca-pub-9048050181020642"
+          async
+          strategy="beforeInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9048050181020642"
+          crossOrigin="anonymous"
+        />
 
         <body>
           <Main />

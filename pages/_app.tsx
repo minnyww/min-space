@@ -21,17 +21,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     // >
     <>
       <NextUIProvider theme={darkTheme}>
+        {/* @ts-ignore */}
         <GlobalStyle />
         <Component {...pageProps} />
       </NextUIProvider>
-      <Script
-        id="Adsense-id"
-        data-ad-client="ca-pub-9048050181020642"
-        async
-        strategy="beforeInteractive"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9048050181020642"
-        crossOrigin="anonymous"
-      />
+
     </>
     // </NextThemesProvider>
   );

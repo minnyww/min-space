@@ -21,6 +21,7 @@ export default function Post({ post, morePosts, preview }: any) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
+  console.log('asdp : ', post)
   return (
     <div id="container" style={{ overflow: "hidden" }}>
       {router.isFallback ? (
@@ -30,6 +31,7 @@ export default function Post({ post, morePosts, preview }: any) {
           <Head>
             <title>{post.title}</title>
             <meta property="og:image" content={post.ogImage.url} />
+            <meta name="description" content={post.title} />
           </Head>
           <Stars />
           <ContentContainer>

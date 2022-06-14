@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import Stars from "../components/Stars";
 import { Button, Card, Col, Text } from "@nextui-org/react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const NavBar = styled.div`
   padding: 1rem 1rem;
@@ -109,6 +110,10 @@ const Home: NextPage = (query: any) => {
       id="container"
       style={{ height: "100%", maxWidth: "900px", margin: "0 auto" }}
     >
+      <Head>
+        <title>Welcom To Min Space</title>
+        <meta name="description" content="My name is Apisit Amnuayworrabut" />
+      </Head>
       <NavBar>
         <Text className="header-text" h1 weight="bold" color="warning">
           Welcom To Min Space
